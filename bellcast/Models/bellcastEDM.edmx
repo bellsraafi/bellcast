@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bellcastModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="cityId" />
+          </Key>
+          <Property Name="cityId" Type="int" Nullable="false" />
+          <Property Name="lon" Type="float" Nullable="false" />
+          <Property Name="lan" Type="float" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Crop">
+          <Key>
+            <PropertyRef Name="cropId" />
+          </Key>
+          <Property Name="cropId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Disease">
+          <Key>
+            <PropertyRef Name="diseaseId" />
+          </Key>
+          <Property Name="diseaseId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="pathogenId" Type="int" Nullable="false" />
+          <Property Name="cropId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiseaseForecast">
+          <Key>
+            <PropertyRef Name="dateTime" />
+          </Key>
+          <Property Name="diseaseId" Type="int" Nullable="false" />
+          <Property Name="cityId" Type="int" Nullable="false" />
+          <Property Name="riskLevelId" Type="int" Nullable="false" />
+          <Property Name="dateTime" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Humidity">
+          <Key>
+            <PropertyRef Name="dateTime" />
+          </Key>
+          <Property Name="value" Type="float" Nullable="false" />
+          <Property Name="dateTime" Type="int" Nullable="false" />
+          <Property Name="cityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LeafWetnessDuration">
+          <Key>
+            <PropertyRef Name="dateTime" />
+          </Key>
+          <Property Name="value" Type="bit" Nullable="false" />
+          <Property Name="dateTime" Type="int" Nullable="false" />
+          <Property Name="cityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pathogen">
+          <Key>
+            <PropertyRef Name="pathogenId" />
+          </Key>
+          <Property Name="pathogenId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RiskLevel">
+          <Key>
+            <PropertyRef Name="rkId" />
+          </Key>
+          <Property Name="rkId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Temperature">
+          <Key>
+            <PropertyRef Name="dateTime" />
+          </Key>
+          <Property Name="min" Type="float" Nullable="false" />
+          <Property Name="max" Type="float" Nullable="false" />
+          <Property Name="day" Type="float" Nullable="false" />
+          <Property Name="night" Type="float" Nullable="false" />
+          <Property Name="morn" Type="float" Nullable="false" />
+          <Property Name="eve" Type="float" Nullable="false" />
+          <Property Name="dateTime" Type="int" Nullable="false" />
+          <Property Name="cityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Weather">
+          <Key>
+            <PropertyRef Name="dateTime" />
+          </Key>
+          <Property Name="main" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="32" />
+          <Property Name="icon" Type="varchar" MaxLength="8" />
+          <Property Name="dateTime" Type="int" Nullable="false" />
+          <Property Name="cityId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="bellcastModelStoreContainer">
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Crop" EntityType="Self.Crop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Disease" EntityType="Self.Disease" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiseaseForecast" EntityType="Self.DiseaseForecast" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Humidity" EntityType="Self.Humidity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeafWetnessDuration" EntityType="Self.LeafWetnessDuration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pathogen" EntityType="Self.Pathogen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RiskLevel" EntityType="Self.RiskLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Temperature" EntityType="Self.Temperature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Weather" EntityType="Self.Weather" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bellcastModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="cityId" />
+          </Key>
+          <Property Name="cityId" Type="Int32" Nullable="false" />
+          <Property Name="lon" Type="Double" Nullable="false" />
+          <Property Name="lan" Type="Double" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Crop">
+          <Key>
+            <PropertyRef Name="cropId" />
+          </Key>
+          <Property Name="cropId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Disease">
+          <Key>
+            <PropertyRef Name="diseaseId" />
+          </Key>
+          <Property Name="diseaseId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pathogenId" Type="Int32" Nullable="false" />
+          <Property Name="cropId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiseaseForecast">
+          <Key>
+            <PropertyRef Name="dateTime" />
+          </Key>
+          <Property Name="diseaseId" Type="Int32" Nullable="false" />
+          <Property Name="cityId" Type="Int32" Nullable="false" />
+          <Property Name="riskLevelId" Type="Int32" Nullable="false" />
+          <Property Name="dateTime" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Humidity">
+          <Key>
+            <PropertyRef Name="dateTime" />
+          </Key>
+          <Property Name="value" Type="Double" Nullable="false" />
+          <Property Name="dateTime" Type="Int32" Nullable="false" />
+          <Property Name="cityId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LeafWetnessDuration">
+          <Key>
+            <PropertyRef Name="dateTime" />
+          </Key>
+          <Property Name="value" Type="Boolean" Nullable="false" />
+          <Property Name="dateTime" Type="Int32" Nullable="false" />
+          <Property Name="cityId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pathogen">
+          <Key>
+            <PropertyRef Name="pathogenId" />
+          </Key>
+          <Property Name="pathogenId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RiskLevel">
+          <Key>
+            <PropertyRef Name="rkId" />
+          </Key>
+          <Property Name="rkId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Temperature">
+          <Key>
+            <PropertyRef Name="dateTime" />
+          </Key>
+          <Property Name="min" Type="Double" Nullable="false" />
+          <Property Name="max" Type="Double" Nullable="false" />
+          <Property Name="day" Type="Double" Nullable="false" />
+          <Property Name="night" Type="Double" Nullable="false" />
+          <Property Name="morn" Type="Double" Nullable="false" />
+          <Property Name="eve" Type="Double" Nullable="false" />
+          <Property Name="dateTime" Type="Int32" Nullable="false" />
+          <Property Name="cityId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Weather">
+          <Key>
+            <PropertyRef Name="dateTime" />
+          </Key>
+          <Property Name="main" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="icon" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="dateTime" Type="Int32" Nullable="false" />
+          <Property Name="cityId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DefaultConnection" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Crops" EntityType="Self.Crop" />
+          <EntitySet Name="Diseases" EntityType="Self.Disease" />
+          <EntitySet Name="DiseaseForecasts" EntityType="Self.DiseaseForecast" />
+          <EntitySet Name="Humidities" EntityType="Self.Humidity" />
+          <EntitySet Name="LeafWetnessDurations" EntityType="Self.LeafWetnessDuration" />
+          <EntitySet Name="Pathogens" EntityType="Self.Pathogen" />
+          <EntitySet Name="RiskLevels" EntityType="Self.RiskLevel" />
+          <EntitySet Name="Temperatures" EntityType="Self.Temperature" />
+          <EntitySet Name="Weathers" EntityType="Self.Weather" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bellcastModelStoreContainer" CdmEntityContainer="DefaultConnection">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="bellcastModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+                <ScalarProperty Name="lon" ColumnName="lon" />
+                <ScalarProperty Name="lan" ColumnName="lan" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Crops">
+            <EntityTypeMapping TypeName="bellcastModel.Crop">
+              <MappingFragment StoreEntitySet="Crop">
+                <ScalarProperty Name="cropId" ColumnName="cropId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diseases">
+            <EntityTypeMapping TypeName="bellcastModel.Disease">
+              <MappingFragment StoreEntitySet="Disease">
+                <ScalarProperty Name="diseaseId" ColumnName="diseaseId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="pathogenId" ColumnName="pathogenId" />
+                <ScalarProperty Name="cropId" ColumnName="cropId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiseaseForecasts">
+            <EntityTypeMapping TypeName="bellcastModel.DiseaseForecast">
+              <MappingFragment StoreEntitySet="DiseaseForecast">
+                <ScalarProperty Name="diseaseId" ColumnName="diseaseId" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+                <ScalarProperty Name="riskLevelId" ColumnName="riskLevelId" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Humidities">
+            <EntityTypeMapping TypeName="bellcastModel.Humidity">
+              <MappingFragment StoreEntitySet="Humidity">
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeafWetnessDurations">
+            <EntityTypeMapping TypeName="bellcastModel.LeafWetnessDuration">
+              <MappingFragment StoreEntitySet="LeafWetnessDuration">
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pathogens">
+            <EntityTypeMapping TypeName="bellcastModel.Pathogen">
+              <MappingFragment StoreEntitySet="Pathogen">
+                <ScalarProperty Name="pathogenId" ColumnName="pathogenId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RiskLevels">
+            <EntityTypeMapping TypeName="bellcastModel.RiskLevel">
+              <MappingFragment StoreEntitySet="RiskLevel">
+                <ScalarProperty Name="rkId" ColumnName="rkId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Temperatures">
+            <EntityTypeMapping TypeName="bellcastModel.Temperature">
+              <MappingFragment StoreEntitySet="Temperature">
+                <ScalarProperty Name="min" ColumnName="min" />
+                <ScalarProperty Name="max" ColumnName="max" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="night" ColumnName="night" />
+                <ScalarProperty Name="morn" ColumnName="morn" />
+                <ScalarProperty Name="eve" ColumnName="eve" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Weathers">
+            <EntityTypeMapping TypeName="bellcastModel.Weather">
+              <MappingFragment StoreEntitySet="Weather">
+                <ScalarProperty Name="main" ColumnName="main" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
