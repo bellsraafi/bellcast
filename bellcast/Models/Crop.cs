@@ -12,10 +12,9 @@ namespace bellcast.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Humidity
+    public partial class Crop
     {
-        public double value { get; set; }
-        public int dateTime { get; set; }
-        public int cityId { get; set; }
+        public int cropId { get; set; }
+        public string name { get; set; }
     }
 }

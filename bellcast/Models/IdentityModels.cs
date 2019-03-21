@@ -21,7 +21,7 @@ namespace bellcast.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("bellcastEntities", throwIfV1Schema: false)
         {
         }
 

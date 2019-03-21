@@ -13,6 +13,9 @@ namespace bellcast
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("GetTodayWeather", "Shared/DisplayWeather/",
+            new { controller = "Home", action = "GetTodayWeather" },
+            new[] { "bellcast.Controllers" });
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
